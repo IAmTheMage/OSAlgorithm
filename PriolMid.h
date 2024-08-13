@@ -25,10 +25,13 @@ class PriolMid {
             return this->processes.empty();
         }
         
+        int getQuantum() {
+            return this->quantum;
+        }
+        
     private:
         std::priority_queue<Process*, std::vector<Process*>, Compare> processes;
-        int current;
-        int size;
+        int quantum;
 };
 
 #endif

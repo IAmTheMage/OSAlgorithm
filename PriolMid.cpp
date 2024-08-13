@@ -1,7 +1,7 @@
 #include "PriolMid.h"
 
 PriolMid::PriolMid(int quantums) {
-    
+    this->quantum = quantums;
 }
 
 PriolMid::PriolMid() {

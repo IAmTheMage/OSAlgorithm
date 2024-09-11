@@ -60,16 +60,15 @@ int main(int argc, char** argv)
                 MPI_Status status;
                 while (!recv_completed) {
                     MPI_Test(&requests[i], &recv_completed, &status);
-                    
                 }
 
                 std::cout << "A new process has arrived" << std::endl;
                 priol->enqueue(&processes[i]);
                 i += 1;
             }
-           
-
-            if(priol->getSize() >= 1) {
+            
+            if(!priol->isQueueEmpty()) {
+                
                 if(MPI_Wtime() - lastTime >= startTime) {
                     Process* process = priol->getMainProcess();
                     std::cout << "Allowing process to execute: " << process->id << std::endl;
@@ -80,15 +79,20 @@ int main(int argc, char** argv)
                     std::cout << "Next quantum: " << nextQuantum << std::endl;
                     process->burst += nextQuantum;
                     MPI_Send(&nextQuantum, 1, MPI_INT, process->id, 0, MPI_COMM_WORLD);
-                    if(process->burst < process->eta)
-                    priol->enqueue(process);
+                    // if(process->burst < process->eta)
+                    // priol->enqueue(process);
                     int c = 0;
                     MPI_Status procces_status;
                     MPI_Recv(&c, 1, MPI_INT, id, 0, MPI_COMM_WORLD, &procces_status);
                     std::cout << "Status: " << id << " finished" << std::endl;
                     startTime = MPI_Wtime();
+                    
                 }
             }
+
+            std::cout << "Nao if" << std::endl;
+
+            if(i > 0 && priol->isQueueEmpty()) break;
 
         }
     }

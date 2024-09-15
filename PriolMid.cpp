@@ -3,10 +3,12 @@
 PriolMid::PriolMid(int quantums) {
     this->quantum = quantums;
     this->counter = 0;
+    this->processed = 0;
 }
 
 PriolMid::PriolMid() {
     std::cout << "Instancing non preemptive priority scheduling" << "\n";
+
 }
 
 PriolMid::~PriolMid() {
@@ -50,10 +52,9 @@ bool PriolMid::isQueueEmpty() {
 
 Process* PriolMid::getMainProcess() {
     int mainQueue = this->findFirstPriolQueue();
+    if(mainQueue == -1)
+        return nullptr;
     Process* process = this->processes[mainQueue].top();
-    std::cout << "Size: " << this->processes[mainQueue].size() << std::endl;
-    this->processes[mainQueue].pop();
-    std::cout << "Size: " << this->processes[mainQueue].size() << std::endl;
     return process;
 }
 
@@ -69,4 +70,16 @@ void PriolMid::printQueue() {
     //     std::cout << "  already: " << (received_proc.already ? "true" : "false") << std::endl;
     //     this->processes.pop();
     // }
+}
+
+int PriolMid::getProcessed() {
+    return this->processed;
+}
+
+void PriolMid::deque() {
+    Process* main = this->getMainProcess();
+
+    this->processes[this->findFirstPriolQueue()].pop();
+    //this->processed += 1;
+    
 }

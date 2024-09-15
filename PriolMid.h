@@ -36,11 +36,21 @@ class PriolMid {
         int getCounter() {
             return this->counter;
         }
+
+        int getProcessed();
+        void deque();
+
+        void addProcessed() {
+            this->processed += 1;
+        };
         
     private:
         std::map<int, std::priority_queue<Process*, std::vector<Process*>, Compare>> processes;
+        std::map<int, double> lastTimeByProcess;
         int quantum;
         int counter;
+        double lastProcesedTime;
+        int processed;
 };
 
 #endif

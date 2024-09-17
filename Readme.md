@@ -7,3 +7,11 @@
 ```bash
 g++ (optimization_flags) basic_main.cpp PriolMid.cpp Process.cpp -o main
 ./main
+
+```
+
+A example output can be found in example_output.txt
+
+Bellow is a fluxogram that represents the algorithm
+
+![Fluxograma do algoritmo](./fluxogram.png)

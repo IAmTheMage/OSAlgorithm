@@ -5,13 +5,13 @@
 #include <stdlib.h> 
 #include "chrono"
 
-#define SIZE 4
+#define SIZE 8
 
 Process* generateRandomProcess() {
     
     Process* process = new Process();
     process->arrive = rand() % 4;
-    process->id = rand() % 151;
+    process->id = rand() % 500;
     process->priol_mid = rand() % 9;
     process->already = false;
     process->eta = rand() % 11 + 1;
@@ -36,6 +36,8 @@ int main(int argc, char const *argv[])
     std::time_t lastTick = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::time_t currentTick;
 
+    int currentId = -1;
+
     while(SIZE > priority->getProcessed()) {
         Process* nextToArrive = processes.top();
         currentTick = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
@@ -58,16 +60,22 @@ int main(int argc, char const *argv[])
         if(first != nullptr) {
             first->burst += currentTick - lastTick;
             lastTick = currentTick;
-
+            if(currentId != first->id) {
+                std::cout << "Current process running: " << first->id << std::endl;
+                currentId = first->id;
+            }
             
-            if(first->burst/(first->uses+1) >= priority->getQuantum()) {
-                std::cout << "Process: " << first->id << " was dequeued" << std::endl;
+            
+            if((first->burst/(first->uses+1) >= priority->getQuantum() && priority->getFirstPriolQueueSize() > 1) || first->burst >= first->eta) {
+                
                 priority->deque();
                 first->uses += 1;
                 if(first->burst < first->eta) {
+                    std::cout << "Process: " << first->id << " was put in the end of queue with priority: " << first->priol_mid << " and run for: " << first->burst << " seconds" << std::endl << std::endl;
                     priority->enqueue(first);
                 }
                 else{
+                    std::cout << "Process: " << first->id << " was dequeued" << std::endl;
                     priority->addProcessed();
                 }
             }

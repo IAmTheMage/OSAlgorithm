@@ -83,3 +83,11 @@ void PriolMid::deque() {
     //this->processed += 1;
     
 }
+
+int PriolMid::getFirstPriolQueueSize() {
+    int mainQueue = this->findFirstPriolQueue();
+    if(mainQueue != -1) {
+        return this->processes[mainQueue].size();
+    }
+    return -1;
+}

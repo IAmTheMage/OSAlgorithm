@@ -1,6 +1,6 @@
 #include "iostream"
 #include <queue>
-#include "process.h"
+#include "Process.h"
 #include "vector"
 #include "map"
 #include <algorithm>
@@ -22,8 +22,7 @@ class PriolMid {
         Process* getMainProcess();
         bool isQueueEmpty();
 
-        std::vector<int> getOrderedKeys();
-        int findFirstPriolQueue();
+        
         
         bool empty() {
             return this->processes.empty();
@@ -43,6 +42,8 @@ class PriolMid {
         void addProcessed() {
             this->processed += 1;
         };
+
+        int getFirstPriolQueueSize();
         
     private:
         std::map<int, std::priority_queue<Process*, std::vector<Process*>, Compare>> processes;
@@ -51,6 +52,9 @@ class PriolMid {
         int counter;
         double lastProcesedTime;
         int processed;
+
+        std::vector<int> getOrderedKeys();
+        int findFirstPriolQueue();
 };
 
 #endif

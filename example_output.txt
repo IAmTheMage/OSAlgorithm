@@ -1,0 +1,121 @@
+Process ID: 150
+Priority/Mid: 4
+Arrival Time: 0
+ETA: 4
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 376
+Priority/Mid: 6
+Arrival Time: 2
+ETA: 7
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 317
+Priority/Mid: 7
+Arrival Time: 1
+ETA: 10
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 123
+Priority/Mid: 7
+Arrival Time: 0
+ETA: 7
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 9
+Priority/Mid: 4
+Arrival Time: 2
+ETA: 10
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 14
+Priority/Mid: 1
+Arrival Time: 1
+ETA: 4
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 121
+Priority/Mid: 0
+Arrival Time: 3
+ETA: 3
+Already: false
+Uses: 0
+Burst: 0
+
+Process ID: 161
+Priority/Mid: 8
+Arrival Time: 0
+ETA: 1
+Already: false
+Uses: 0
+Burst: 0
+
+A new process has enqueued, with id: 161 size: 8
+
+Current process running: 161
+A new process has enqueued, with id: 123 size: 7
+
+A new process has enqueued, with id: 150 size: 6
+
+A new process has enqueued, with id: 317 size: 5
+
+Process: 161 was dequeued
+A new process has enqueued, with id: 14 size: 4
+
+Current process running: 123
+A new process has enqueued, with id: 376 size: 3
+
+A new process has enqueued, with id: 9 size: 2
+
+A new process has enqueued, with id: 121 size: 1
+
+Process: 123 was put in the end of queue with priority: 7 and run for: 2 seconds
+
+Current process running: 317
+Process: 317 was put in the end of queue with priority: 7 and run for: 2 seconds
+
+Current process running: 123
+Process: 123 was put in the end of queue with priority: 7 and run for: 4 seconds
+
+Current process running: 317
+Process: 317 was put in the end of queue with priority: 7 and run for: 4 seconds
+
+Current process running: 123
+Process: 123 was put in the end of queue with priority: 7 and run for: 6 seconds
+
+Current process running: 317
+Process: 317 was put in the end of queue with priority: 7 and run for: 6 seconds
+
+Current process running: 123
+Process: 123 was dequeued
+Current process running: 317
+Process: 317 was dequeued
+Current process running: 376
+Process: 376 was dequeued
+Current process running: 150
+Process: 150 was put in the end of queue with priority: 4 and run for: 2 seconds
+
+Current process running: 9
+Process: 9 was put in the end of queue with priority: 4 and run for: 2 seconds
+
+Current process running: 150
+Process: 150 was dequeued
+Current process running: 9
+Process: 9 was dequeued
+Current process running: 14
+Process: 14 was dequeued
+Current process running: 121
+Process: 121 was dequeued
+Finishing

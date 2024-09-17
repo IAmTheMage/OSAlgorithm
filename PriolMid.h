@@ -4,13 +4,14 @@
 #include "vector"
 #include "map"
 #include <algorithm>
+#include <functional> 
 
 #ifndef PRIOL_MID_H
 #define PRIOL_MID_H
 
 class PriolMid {
     public:
-        PriolMid(int quantums);
+        PriolMid(std::function<int(int, int)> newQuantumDef);
         PriolMid();
         ~PriolMid();
         void enqueue(Process* process);
@@ -29,7 +30,7 @@ class PriolMid {
         }
         
         int getQuantum() {
-            return this->quantum;
+            return this->quantumDef(this->getMainProcess()->priol_mid, this->getFirstPriolQueueSize());
         }
 
         int getCounter() {
@@ -44,6 +45,9 @@ class PriolMid {
         };
 
         int getFirstPriolQueueSize();
+        void setQuantumDef(std::function<int(int, int)> newQuantumDef) {
+            this->quantumDef = newQuantumDef;
+        }
         
     private:
         std::map<int, std::priority_queue<Process*, std::vector<Process*>, Compare>> processes;
@@ -55,6 +59,7 @@ class PriolMid {
 
         std::vector<int> getOrderedKeys();
         int findFirstPriolQueue();
+        std::function<int(int, int)> quantumDef; 
 };
 
 #endif

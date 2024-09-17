@@ -1,7 +1,7 @@
 #include "PriolMid.h"
 
-PriolMid::PriolMid(int quantums) {
-    this->quantum = quantums;
+PriolMid::PriolMid(std::function<int(int, int)> newQuantumDef) {
+    this->quantumDef = newQuantumDef;
     this->counter = 0;
     this->processed = 0;
 }
